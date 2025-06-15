@@ -1,5 +1,7 @@
-discord.py
+py-cord
+pynacl
+openai
+
 python-dotenv
-discord.ext.voice_recv
 
 

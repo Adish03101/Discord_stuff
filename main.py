@@ -2,7 +2,7 @@ import os
 from os import environ as env
 from dotenv import load_dotenv
 import discord
-
+from transcribe import save_transcript
 load_dotenv()
 TOKEN = os.getenv('DISCORD_BOT_TOKEN')
 RECORDING_DIR = 'recordings'
@@ -55,6 +55,8 @@ async def save_to_file(sink, channel):
 
     except Exception as e:
         await channel.send(f"⚠️ Error saving recording: {e}")
+
+    await save_transcript(filename, channel.guild.id)
 
 
 
