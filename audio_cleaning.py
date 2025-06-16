@@ -33,7 +33,7 @@ class Audiosegment():
             f.write("]\n")
         print(f"Time line data saved to {output_file}")
     
-    def process_audio(self, min_silence_len=1000, silence_thresh=-40, output_folder='output'):
+    def process_audio(self, min_silence_len=1000, silence_thresh=-40, output_folder='output',i=1):
         
         try:
             non_silent = self.split_on_silence(min_silence_len, silence_thresh)
@@ -51,9 +51,28 @@ class Audiosegment():
                 silent_parts_times.append((silent_start_times, silent_end_time))
             if not os.path.exists(output_folder):
                 os.makedirs(output_folder)
-            silent_text_path = os.path.join(output_folder, 'silent_parts.txt')
+            silent_text_path = os.path.join(output_folder, f'silent_parts.txt{i}')
             self.save_time(silent_parts_times, silent_text_path)
             print(f"Processed audio saved to and time data to {silent_text_path}")
         except Exception as e:
             print(f"An error occurred while processing the audio: {e}")
 
+AUDIO_FOLDER = 'recordings'
+def process_all_audio_files(folder=AUDIO_FOLDER):
+    if not os.path.exists(folder):
+        print(f"Folder {folder} does not exist.")
+        return
+    
+    for i,filename in enumerate(os.listdir(folder)):
+        if filename.endswith('.wav') or filename.endswith('.mp3'):
+            audio_file_path = os.path.join(folder, filename)
+            print(f"Processing {audio_file_path}...")
+            audio_segment = Audiosegment(audio_file_path,i)
+            output_folder = os.path.join(folder, f'time_stamps-{filename}')
+            os.makedirs(output_folder, exist_ok=True)
+            audio_segment.process_audio(output_folder=output_folder)
+        else:
+            print(f"Skipping non-audio file: {filename}")
+
+if __name__ == "__main__":
+    process_all_audio_files(AUDIO_FOLDER)
