@@ -66,7 +66,6 @@ async def save_to_file(sink, channel):
         for user_id, audio in sink.audio_data.items():
             user = await channel.guild.fetch_member(user_id)
             filename = f"{RECORDING_DIR}/{channel.guild.id}_{user.display_name}_{user_id}.wav"
-
             with open(filename, "wb") as f:
                 f.write(audio.file.getvalue())
 
