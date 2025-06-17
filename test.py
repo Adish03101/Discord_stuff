@@ -50,10 +50,11 @@ async def join(ctx):
         log("Connected to voice channel.")
         connections.update({ctx.guild.id: vc})
 
+        session_id = f"{ctx.guild.id}_{ctx.author.id}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"        
         vc.start_recording(
             discord.sinks.WaveSink(),  
-            save_to_file,
-            ctx.channel,
+            lambda sinks, channel: save_to_file(sinks, channel, session_id),
+            ctx.channel
         )
         await ctx.respond("🔴 Listening to this conversation.")
         log("Recording started.")
@@ -63,7 +64,7 @@ async def join(ctx):
         await ctx.respond(f"❌ Error connecting: {e}")
         print(f"❌ Connection error: {e}")
 
-async def save_to_file(sink, channel):
+async def save_to_file(sink, channel,session_id):
     log("save_to_file triggered.")
 
     if not os.path.exists(RECORDING_DIR):
@@ -85,7 +86,7 @@ async def save_to_file(sink, channel):
                 log(f"Failed to fetch member for user_id {user_id}: {e}")
                 continue
 
-            filename = f"{RECORDING_DIR}/{channel.guild.id}_{user.display_name}_{user_id}.wav"
+            filename = f"{RECORDING_DIR}/{session_id}_{channel.guild.id}_{user.display_name}_{user_id}.wav"
             try:
                 with open(filename, "wb") as f:
                     f.write(audio.file.getvalue())

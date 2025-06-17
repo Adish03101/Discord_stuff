@@ -35,3 +35,63 @@
 [2025-06-16T22:50:34.262173] Saving audio for user_id: 679388060160491542
 [2025-06-16T22:50:34.715250] Fetched user: BlackStar (679388060160491542)
 [2025-06-16T22:50:34.716805] Audio saved for BlackStar at recordings/932936687988916244_BlackStar_679388060160491542.wav
+[2025-06-17T02:39:11.433323] Bot is ready.
+[2025-06-17T02:39:21.660173] join command triggered.
+[2025-06-17T02:39:21.660397] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-17T02:39:21.669536] Voice channel: General
+[2025-06-17T02:39:22.788573] Connected to voice channel.
+[2025-06-17T02:39:23.343102] Recording started.
+[2025-06-17T02:39:28.871649] stop command triggered.
+[2025-06-17T02:39:29.387714] Stopped recording and disconnected.
+[2025-06-17T02:43:32.347427] Bot is ready.
+[2025-06-17T02:43:35.632408] join command triggered.
+[2025-06-17T02:43:35.632577] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-17T02:43:35.632644] Voice channel: General
+[2025-06-17T02:43:37.383093] Connected to voice channel.
+[2025-06-17T02:43:37.866565] Recording started.
+[2025-06-17T02:46:48.069307] Bot is ready.
+[2025-06-17T02:46:54.106413] stop command triggered.
+[2025-06-17T02:46:54.106515] No active connection found for guild.
+[2025-06-17T02:47:00.113446] join command triggered.
+[2025-06-17T02:47:00.113845] User not in a voice channel.
+[2025-06-17T02:47:06.086614] join command triggered.
+[2025-06-17T02:47:06.086763] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-17T02:47:06.086810] Voice channel: General
+[2025-06-17T02:47:07.759753] Connected to voice channel.
+[2025-06-17T02:47:08.219778] Recording started.
+[2025-06-17T02:47:21.815176] stop command triggered.
+[2025-06-17T02:47:22.386783] Stopped recording and disconnected.
+[2025-06-17T02:49:14.534567] Bot is ready.
+[2025-06-17T02:50:02.572169] join command triggered.
+[2025-06-17T02:50:02.572327] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-17T02:50:02.572387] Voice channel: General
+[2025-06-17T02:50:03.632420] Connected to voice channel.
+[2025-06-17T02:50:04.246912] Recording started.
+[2025-06-17T02:50:13.289025] stop command triggered.
+[2025-06-17T02:50:13.881461] Stopped recording and disconnected.
+[2025-06-17T02:53:11.544204] Bot is ready.
+[2025-06-17T02:53:19.913862] join command triggered.
+[2025-06-17T02:53:19.913983] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-17T02:53:19.914045] Voice channel: General
+[2025-06-17T02:53:20.992112] Connected to voice channel.
+[2025-06-17T02:53:22.653118] Recording started.
+[2025-06-17T02:53:33.597807] stop command triggered.
+[2025-06-17T02:53:33.606257] save_to_file triggered.
+[2025-06-17T02:53:33.606429] Saving audio for user_id: 679388060160491542
+[2025-06-17T02:53:34.049883] Fetched user: BlackStar (679388060160491542)
+[2025-06-17T02:53:34.051303] Audio saved for BlackStar at recordings/932936687988916244_679388060160491542_20250617_025320_932936687988916244_BlackStar_679388060160491542.wav
+[2025-06-17T02:53:34.274555] Stopped recording and disconnected.
+[2025-06-17T02:54:23.759789] join command triggered.
+[2025-06-17T02:54:23.759952] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-17T02:54:23.760019] Voice channel: General
+[2025-06-17T02:54:24.919153] Connected to voice channel.
+[2025-06-17T02:54:25.635712] Recording started.
+[2025-06-17T02:54:45.224300] stop command triggered.
+[2025-06-17T02:54:45.225439] save_to_file triggered.
+[2025-06-17T02:54:45.225536] Saving audio for user_id: 1384092738664005642
+[2025-06-17T02:54:45.826337] Fetched user: Adish (1384092738664005642)
+[2025-06-17T02:54:45.828167] Audio saved for Adish at recordings/932936687988916244_679388060160491542_20250617_025424_932936687988916244_Adish_1384092738664005642.wav
+[2025-06-17T02:54:45.909055] Stopped recording and disconnected.
+[2025-06-17T02:54:46.283958] Saving audio for user_id: 679388060160491542
+[2025-06-17T02:54:47.190501] Fetched user: BlackStar (679388060160491542)
+[2025-06-17T02:54:47.192645] Audio saved for BlackStar at recordings/932936687988916244_679388060160491542_20250617_025424_932936687988916244_BlackStar_679388060160491542.wav

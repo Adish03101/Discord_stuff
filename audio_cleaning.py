@@ -29,7 +29,7 @@ class Audiosegment():
         with open(output_file, 'w') as f:
             f.write("[")
             for start, end in time_line_data:
-                f.write(f"{start} {end}\n")
+                f.write(f"start:{start}, end:{end}\n")
             f.write("]\n")
         print(f"Time line data saved to {output_file}")
     
@@ -63,14 +63,14 @@ def process_all_audio_files(folder=AUDIO_FOLDER):
         print(f"Folder {folder} does not exist.")
         return
     
-    for i,filename in enumerate(os.listdir(folder)):
+    for i, filename in enumerate(os.listdir(folder)):
         if filename.endswith('.wav') or filename.endswith('.mp3'):
             audio_file_path = os.path.join(folder, filename)
             print(f"Processing {audio_file_path}...")
-            audio_segment = Audiosegment(audio_file_path,i)
+            audio_segment = Audiosegment(audio_file_path)
             output_folder = os.path.join(folder, f'time_stamps-{filename}')
             os.makedirs(output_folder, exist_ok=True)
-            audio_segment.process_audio(output_folder=output_folder)
+            audio_segment.process_audio(output_folder=output_folder, i=i)
         else:
             print(f"Skipping non-audio file: {filename}")
 
