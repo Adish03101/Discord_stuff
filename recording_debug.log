@@ -95,3 +95,170 @@
 [2025-06-17T02:54:46.283958] Saving audio for user_id: 679388060160491542
 [2025-06-17T02:54:47.190501] Fetched user: BlackStar (679388060160491542)
 [2025-06-17T02:54:47.192645] Audio saved for BlackStar at recordings/932936687988916244_679388060160491542_20250617_025424_932936687988916244_BlackStar_679388060160491542.wav
+[2025-06-17T19:43:17.012052] Bot is ready.
+[2025-06-17T19:43:29.202206] join command triggered.
+[2025-06-17T19:43:29.202298] User not in a voice channel.
+[2025-06-17T19:43:35.311736] join command triggered.
+[2025-06-17T19:43:35.311852] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-17T19:43:35.311892] Voice channel: General
+[2025-06-17T19:43:36.202529] Connected to voice channel.
+[2025-06-17T19:43:36.691998] Recording started.
+[2025-06-17T19:44:19.927992] stop command triggered.
+[2025-06-17T19:44:19.930040] save_to_file triggered.
+[2025-06-17T19:44:19.930156] No audio data found in sink.
+[2025-06-17T19:44:20.493359] Stopped recording and disconnected.
+[2025-06-17T19:45:05.208185] Bot is ready.
+[2025-06-17T19:46:16.295201] join command triggered.
+[2025-06-17T19:46:16.295357] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-17T19:46:16.295414] Voice channel: General
+[2025-06-17T19:46:17.140369] Connected to voice channel.
+[2025-06-17T19:46:17.776086] Recording started.
+[2025-06-17T19:46:50.047569] stop command triggered.
+[2025-06-17T19:46:50.054985] save_to_file triggered.
+[2025-06-17T19:46:50.055109] Saving audio for user_id: 679388060160491542
+[2025-06-17T19:46:50.753925] Fetched user: BlackStar (679388060160491542)
+[2025-06-17T19:46:50.755066] Audio saved for BlackStar at recordings/932936687988916244_679388060160491542_20250617_194617_932936687988916244_BlackStar_679388060160491542.wav
+[2025-06-17T19:47:02.019183] Error during stop command: 404 Not Found (error code: 10062): Unknown interaction
+Traceback (most recent call last):
+  File "/home/black/Documents/Backup-20250525T232449Z-1-001/Backup/discord_stuff/Discord_stuff/test.py", line 119, in stop
+    await ctx.respond("🔴 Stopped recording and disconnected from the voice channel.")
+  File "/home/black/Documents/Backup-20250525T232449Z-1-001/Backup/discord_stuff/Discord_stuff/virt/lib/python3.12/site-packages/discord/interactions.py", line 620, in respond
+    return await self.response.send_message(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/black/Documents/Backup-20250525T232449Z-1-001/Backup/discord_stuff/Discord_stuff/virt/lib/python3.12/site-packages/discord/interactions.py", line 961, in send_message
+    await self._locked_response(
+  File "/home/black/Documents/Backup-20250525T232449Z-1-001/Backup/discord_stuff/Discord_stuff/virt/lib/python3.12/site-packages/discord/interactions.py", line 1292, in _locked_response
+    await coro
+  File "/home/black/Documents/Backup-20250525T232449Z-1-001/Backup/discord_stuff/Discord_stuff/virt/lib/python3.12/site-packages/discord/webhook/async_.py", line 222, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+[2025-06-19T04:18:00.091168] Bot is ready.
+[2025-06-19T04:18:19.725890] join command triggered.
+[2025-06-19T04:18:19.726025] User not in a voice channel.
+[2025-06-19T04:18:38.343558] join command triggered.
+[2025-06-19T04:18:38.343746] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-19T04:18:38.343815] Voice channel: General
+[2025-06-19T04:18:39.507608] Connected to voice channel.
+[2025-06-19T04:18:40.085406] Recording started.
+[2025-06-19T04:19:48.225284] stop command triggered.
+[2025-06-19T04:19:48.237516] save_to_file triggered.
+[2025-06-19T04:19:48.237627] Saving audio for user_id: 679388060160491542
+[2025-06-19T04:19:48.854935] Fetched user: BlackStar (679388060160491542)
+[2025-06-19T04:19:48.865038] Audio saved for BlackStar at recordings/932936687988916244_679388060160491542_20250619_041839_932936687988916244_BlackStar_679388060160491542.wav
+[2025-06-19T04:19:48.888570] Stopped recording and disconnected.
+[2025-06-19T04:21:26.378699] join command triggered.
+[2025-06-19T04:21:26.379030] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-19T04:21:26.379094] Voice channel: General
+[2025-06-19T04:21:27.455988] Connected to voice channel.
+[2025-06-19T04:21:28.087139] Recording started.
+[2025-06-19T04:21:37.760696] stop command triggered.
+[2025-06-19T04:21:37.767635] save_to_file triggered.
+[2025-06-19T04:21:37.767857] Saving audio for user_id: 679388060160491542
+[2025-06-19T04:21:38.241235] Fetched user: BlackStar (679388060160491542)
+[2025-06-19T04:21:38.241714] Audio saved for BlackStar at recordings/932936687988916244_679388060160491542_20250619_042127_932936687988916244_BlackStar_679388060160491542.wav
+[2025-06-19T04:21:38.720601] Stopped recording and disconnected.
+[2025-06-19T04:22:39.908935] Bot is ready.
+[2025-06-19T04:22:55.064173] join command triggered.
+[2025-06-19T04:22:55.064307] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-19T04:22:55.064343] Voice channel: General
+[2025-06-19T04:22:56.089797] Connected to voice channel.
+[2025-06-19T04:22:56.840783] Recording started.
+[2025-06-19T04:23:25.673784] stop command triggered.
+[2025-06-19T04:23:25.679480] save_to_file triggered.
+[2025-06-19T04:23:25.679597] No audio data found in sink.
+[2025-06-19T04:23:26.301476] Stopped recording and disconnected.
+[2025-06-19T04:23:29.254475] join command triggered.
+[2025-06-19T04:23:29.254633] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-19T04:23:29.254696] Voice channel: General
+[2025-06-19T04:23:30.381735] Connected to voice channel.
+[2025-06-19T04:23:30.855642] Recording started.
+[2025-06-19T04:25:19.071245] stop command triggered.
+[2025-06-19T04:25:19.072471] save_to_file triggered.
+[2025-06-19T04:25:19.072607] No audio data found in sink.
+[2025-06-19T04:25:19.758626] Stopped recording and disconnected.
+[2025-06-19T04:29:42.063386] join command triggered.
+[2025-06-19T04:29:42.063726] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-19T04:29:42.063868] Voice channel: General
+[2025-06-19T04:29:43.225341] Connected to voice channel.
+[2025-06-19T04:29:43.907426] Recording started.
+[2025-06-19T04:30:10.747584] stop command triggered.
+[2025-06-19T04:30:10.750611] save_to_file triggered.
+[2025-06-19T04:30:10.750908] Saving audio for user_id: 679388060160491542
+[2025-06-19T04:30:10.754223] General error in save_to_file: 'AudioData' object has no attribute 'start_time'
+Traceback (most recent call last):
+  File "/home/black/Documents/Backup-20250525T232449Z-1-001/Backup/discord_stuff/Discord_stuff/test.py", line 86, in save_to_file
+    'start': audio.start_time,
+             ^^^^^^^^^^^^^^^^
+AttributeError: 'AudioData' object has no attribute 'start_time'
+
+[2025-06-19T04:30:11.469661] Stopped recording and disconnected.
+[2025-06-19T14:29:11.716015] Bot is ready.
+[2025-06-19T20:27:49.068890] Bot is ready.
+[2025-06-19T20:38:01.274369] join command triggered.
+[2025-06-19T20:38:01.276008] User not in a voice channel.
+[2025-06-19T20:38:11.680122] join command triggered.
+[2025-06-19T20:38:11.680343] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-19T20:38:11.680398] Voice channel: General
+[2025-06-19T20:38:12.781062] Connected to voice channel.
+[2025-06-19T20:38:13.233652] Recording started.
+[2025-06-19T20:39:33.370849] stop command triggered.
+[2025-06-19T20:39:33.381406] save_to_file triggered.
+[2025-06-19T20:39:33.381841] Saving audio for user_id: 679388060160491542
+[2025-06-19T20:39:33.386840] General error in save_to_file: 'AudioData' object has no attribute 'start_time'
+Traceback (most recent call last):
+  File "/home/black/Documents/Backup-20250525T232449Z-1-001/Backup/discord_stuff/Discord_stuff/test.py", line 86, in save_to_file
+    'start': audio.start_time,
+             ^^^^^^^^^^^^^^^^
+AttributeError: 'AudioData' object has no attribute 'start_time'
+
+[2025-06-19T20:39:34.147474] Stopped recording and disconnected.
+[2025-06-19T20:40:46.837560] Bot is ready.
+[2025-06-19T20:40:52.128810] join command triggered.
+[2025-06-19T20:40:52.129034] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-19T20:40:52.129090] Voice channel: General
+[2025-06-19T20:40:53.084720] Connected to voice channel.
+[2025-06-19T20:40:53.086070] Error connecting: type object 'datetime.datetime' has no attribute 'datetime'
+Traceback (most recent call last):
+  File "/home/black/Documents/Backup-20250525T232449Z-1-001/Backup/discord_stuff/Discord_stuff/test.py", line 83, in join
+    session_id = f"{ctx.guild.id}_{ctx.author.id}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
+                                           ^^^^^^^^^^^^^^^^^
+AttributeError: type object 'datetime.datetime' has no attribute 'datetime'
+
+[2025-06-19T20:41:34.589695] Bot is ready.
+[2025-06-19T20:41:36.477296] join command triggered.
+[2025-06-19T20:41:36.477559] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-19T20:41:36.477637] Voice channel: General
+[2025-06-19T20:41:37.537495] Connected to voice channel.
+[2025-06-19T20:41:37.539023] Error connecting: Must provide a Sink object.
+Traceback (most recent call last):
+  File "/home/black/Documents/Backup-20250525T232449Z-1-001/Backup/discord_stuff/Discord_stuff/test.py", line 83, in join
+    vc.start_recording(
+  File "/home/black/Documents/Backup-20250525T232449Z-1-001/Backup/discord_stuff/Discord_stuff/virt/lib/python3.12/site-packages/discord/voice_client.py", line 781, in start_recording
+    raise RecordingException("Must provide a Sink object.")
+discord.sinks.errors.RecordingException: Must provide a Sink object.
+
+[2025-06-19T20:44:35.571523] Bot is ready.
+[2025-06-19T20:44:38.967528] join command triggered.
+[2025-06-19T20:44:38.967648] Voice state: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-06-19T20:44:38.967687] Voice channel: General
+[2025-06-19T20:44:39.973751] Connected to voice channel.
+[2025-06-19T20:44:40.563320] Recording started.
+[2025-06-19T20:44:53.587621] stop command triggered.
+[2025-06-19T20:44:53.596439] save_to_file triggered.
+[2025-06-19T20:44:53.596576] Saving audio for user_id: 679388060160491542
+[2025-06-19T20:44:54.026438] Fetched user: BlackStar (679388060160491542)
+[2025-06-19T20:44:54.027251] Audio saved for BlackStar at recordings/932936687988916244_679388060160491542_20250619_204439_BlackStar_679388060160491542.wav
+[2025-06-19T20:44:54.234493] Stopped recording and disconnected.
+[2025-06-19T20:44:54.585378] General error in save_to_file: keys must be str, int, float, bool or None, not bytes
+Traceback (most recent call last):
+  File "/home/black/Documents/Backup-20250525T232449Z-1-001/Backup/discord_stuff/Discord_stuff/test.py", line 138, in save_to_file
+    json.dump(timeline, f, indent=2, default=str)
+  File "/usr/lib/python3.12/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "/usr/lib/python3.12/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/usr/lib/python3.12/json/encoder.py", line 377, in _iterencode_dict
+    raise TypeError(f'keys must be str, int, float, bool or None, '
+TypeError: keys must be str, int, float, bool or None, not bytes
+
