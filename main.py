@@ -101,11 +101,12 @@ class CustomWaveSink(discord.sinks.WaveSink):
 
 @bot.command()
 async def join(ctx):
-    voice = ctx.author.voice
+    # Prefer ctx.author.voice for reliability
+    voice = getattr(ctx.author, 'voice', None)
+    log(f"[DEBUG] ctx.author: {ctx.author}, ctx.author.voice: {voice}")
     if not voice:
         await ctx.respond("⚠️ Join a voice channel first")
         return
-
     try:
         vc = await voice.channel.connect()
         connections[ctx.guild.id] = vc

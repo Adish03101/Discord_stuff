@@ -3728,3 +3728,14 @@ TypeError: keys must be str, int, float, bool or None, not bytes
 [2025-06-20T16:41:37.294700] Recording started.
 [2025-06-20T17:01:47.618663] Bot ready
 [2025-06-24T19:51:50.758851] Bot ready
+[2025-07-08T16:05:20.799748] Bot ready
+[2025-07-08T17:09:07.334425] Bot ready
+[2025-07-08T17:09:24.010257] Bot ready
+[2025-07-08T17:20:45.209895] Bot ready
+[2025-07-08T17:22:06.216340] Bot ready
+[2025-07-08T17:22:12.596706] [DEBUG] ctx.author: adish03 (Adish), ctx.author.voice: None
+[2025-07-08T17:23:22.721937] [DEBUG] ctx.author: adish03 (Adish), ctx.author.voice: None
+[2025-07-08T17:50:31.140757] [DEBUG] ctx.author: blackstar031011 (BlackStar), ctx.author.voice: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-07-08T17:51:13.940773] [DEBUG] ctx.author: blackstar031011 (BlackStar), ctx.author.voice: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
+[2025-07-08T20:00:31.390880] Bot ready
+[2025-07-08T20:01:07.151551] [DEBUG] ctx.author: blackstar031011 (BlackStar), ctx.author.voice: <VoiceState self_mute=False self_deaf=False self_stream=False suppress=False requested_to_speak_at=None channel=<VoiceChannel id=932936687988916248 name='General' status=None rtc_region=None position=0 bitrate=64000 video_quality_mode=<VideoQualityMode.auto: 1> user_limit=0 category_id=932936687988916246>>
