@@ -9,7 +9,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV /home/black/Documents/Backup-20250525T232449Z-1-001/Backup/discord_stuff/Discord_stuff/virt
+setenv VIRTUAL_ENV /home/black/Backup/Discord_stuff/virt
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/"bin":$PATH"

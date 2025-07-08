@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/black/Documents/Backup-20250525T232449Z-1-001/Backup/discord_stuff/Discord_stuff/virt
+set -gx VIRTUAL_ENV /home/black/Backup/Discord_stuff/virt
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH
