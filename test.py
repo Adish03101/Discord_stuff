@@ -1,172 +1,138 @@
 import os
-from os import environ as env
-from dotenv import load_dotenv
-import discord
-import traceback
-from datetime import datetime, timedelta
-from collections import defaultdict
 import json
-import wave
-import contextlib
+from pydub import AudioSegment
+from datetime import datetime
 
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
-RECORDING_DIR = 'recordings'
-LOG_FILE = 'recording_debug.log'
+from pydub.utils import which
 
-# Improved Opus loading with fallback
-try:
-    discord.opus.load_opus('libopus.so.0')  # Common Linux path
-except OSError:
-    try:
-        discord.opus.load_opus('opus')  # Try default name
-    except:
-        print("⚠️ Opus not loaded - voice may not work")
+# Set FFmpeg path
+ffmpeg_path = which("ffmpeg")
+if ffmpeg_path:
+    AudioSegment.converter = ffmpeg_path
+    print(f"Using FFmpeg at: {ffmpeg_path}")
+else:
+    print("Warning: FFmpeg not found")
 
-print("Opus loaded:", discord.opus.is_loaded())
+def load_audio_files():
+    """Load audio files with proper error handling"""
+    speakers = {}
+    for filename in os.listdir('recordings'):
+        if filename.endswith('.wav'):
+            filepath = os.path.join('recordings', filename)
+            try:
+                if not os.path.exists(filepath):
+                    print(f"File does not exist: {filepath}")
+                    continue
+                file_size = os.path.getsize(filepath)
+                if file_size == 0:
+                    print(f"File is empty: {filepath}")
+                    continue
+                speaker_num = filename.split('_')[0]
+                speaker_id = f"speaker_{speaker_num}"
+                try:
+                    audio = AudioSegment.from_wav(filepath)
+                except:
+                    try:
+                        audio = AudioSegment.from_file(filepath, format="wav")
+                    except:
+                        audio = AudioSegment.from_file(filepath)
+                speakers[speaker_id] = audio
+                print(f"✅ Loaded {speaker_id}: {len(audio):,} ms ({len(audio)/1000:.2f}s)")
+            except Exception as e:
+                print(f'❌ Error processing {filename}: {e}')
+    return speakers
 
-intents = discord.Intents.default()
-intents.voice_states = True
-intents.guilds = True
-intents.messages = True
-intents.message_content = True
+def load_timeline():
+    """Load timeline JSON file"""
+    timeline = {}
+    for filename in os.listdir('recordings'):
+        if filename.endswith('.json'):
+            filepath = os.path.join('recordings', filename)
+            try:
+                with open(filepath, 'r') as f:
+                    timeline = json.load(f)
+                print(f"✅ Timeline loaded from {filename} with {len(timeline)} speakers")
+                break
+            except Exception as e:
+                print(f'❌ Error loading {filename}: {e}')
+    return timeline
 
-bot = discord.Bot(intents=intents)
-connections = {}
+def create_natural_conversation_mix(speakers, timeline, max_gap_seconds=2.0):
+    """
+    Create natural conversation flow with minimal silence gaps.
+    """
+    all_speech_events = []
+    audio_positions = {sp: 0 for sp in speakers.keys()}
+    for speaker, segments in timeline.items():
+        if speaker not in speakers:
+            continue
+        for seg in segments:
+            if not seg['silent']:
+                start_dt = datetime.fromisoformat(seg['start'])
+                end_dt = datetime.fromisoformat(seg['end'])
+                duration_ms = int((end_dt - start_dt).total_seconds() * 1000)
+                all_speech_events.append({
+                    'speaker': speaker,
+                    'start_dt': start_dt,
+                    'end_dt': end_dt,
+                    'duration_ms': duration_ms
+                })
+    all_speech_events.sort(key=lambda x: x['start_dt'])
+    conversation_mix = AudioSegment.silent(duration=0)
+    overlap_segments = []
+    for i, event in enumerate(all_speech_events):
+        speaker = event['speaker']
+        duration_ms = event['duration_ms']
+        start_pos = audio_positions[speaker]
+        end_pos = start_pos + duration_ms
+        audio_chunk = speakers[speaker][start_pos:end_pos]
+        audio_positions[speaker] = end_pos
+        is_overlap = False
+        if i > 0:
+            prev_event = all_speech_events[i-1]
+            if event['start_dt'] < prev_event['end_dt']:
+                is_overlap = True
+                prev_dur = int((prev_event['end_dt'] - prev_event['start_dt']).total_seconds() * 1000)
+                if duration_ms <= prev_dur:
+                    overlap_segments.append({'audio': audio_chunk, 'speaker': speaker})
+                    continue
+        if not is_overlap and i > 0:
+            prev_event = all_speech_events[i-1]
+            gap_seconds = (event['start_dt'] - prev_event['end_dt']).total_seconds()
+            if gap_seconds > 0:
+                actual_gap = min(gap_seconds, max_gap_seconds)
+                gap_ms = int(actual_gap * 1000)
+                if gap_ms > 0:
+                    silence_gap = AudioSegment.silent(duration=gap_ms)
+                    conversation_mix += silence_gap
+        conversation_mix += audio_chunk
+    for overlap in overlap_segments:
+        conversation_mix += overlap['audio']
+    return conversation_mix
 
-def log(message):
-    timestamp = datetime.now().isoformat()
-    print(f"[{timestamp}] {message}")
-    with open(LOG_FILE, 'a') as f:
-        f.write(f"[{timestamp}] {message}\n")
-
-@bot.event
-async def on_ready():
-    log("Bot ready")
-    print(f"✅ Logged in as {bot.user}")
-
-class CustomWaveSink(discord.sinks.WaveSink):
-    def __init__(self):
-        super().__init__()
-        self.time_segments = defaultdict(list)
-        self.last_seen = {}
-        self.user_id_map = {}
-        self.speaker_counter = 1
-        self.first_data_received = {}  # Track first data per user
-
-    def write(self, data, user_id):
-        """Fixed parameter order: (data, user_id)"""
-        if user_id not in self.user_id_map:
-            speaker_label = f"speaker_{len(self.user_id_map) + 1}"
-            self.user_id_map[user_id] = speaker_label
-            self.first_data_received[user_id] = datetime.now()
-
-        speaker = self.user_id_map[user_id]
-        now = datetime.now()
-
-        # Initialize if first segment
-        if user_id not in self.last_seen:
-            self.time_segments[speaker].append({
-                'start': self.first_data_received[user_id],
-                'end': now
-            })
-            self.last_seen[user_id] = now
-            super().write(data, user_id)
-            return
-
-        last = self.last_seen[user_id]
-        gap = (now - last).total_seconds()
-
-        # Extend segment if within 2s gap, else new segment
-        if gap <= 2.0:
-            self.time_segments[speaker][-1]['end'] = now
-        else:
-            # Insert silence segment
-            self.time_segments[speaker].append({
-                'start': last + timedelta(seconds=1),
-                'end': now - timedelta(seconds=1),
-                'silent': True
-            })
-            # New speech segment
-            self.time_segments[speaker].append({
-                'start': now,
-                'end': now
-            })
-
-        self.last_seen[user_id] = now
-        super().write(data, user_id)
-
-    def get_timeline_data(self):
-        return dict(self.time_segments)
-
-@bot.command()
-async def join(ctx):
-    voice = ctx.author.voice
-    if not voice:
-        await ctx.respond("⚠️ Join a voice channel first")
+def main():
+    print("🎙️  DISCORD AUDIO PROCESSING — NATURAL CONVERSATION FLOW")
+    print("=" * 60)
+    print("\n1. 📁 LOADING AUDIO FILES:")
+    speakers = load_audio_files()
+    if not speakers:
+        print("❌ No audio files loaded!")
         return
-
-    try:
-        vc = await voice.channel.connect()
-        connections[ctx.guild.id] = vc
-        
-        session_id = f"{ctx.guild.id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-        
-        vc.start_recording(
-            CustomWaveSink(),
-            lambda sink, channel: save_to_file(sink, channel, session_id),
-            ctx.channel
-        )
-        await ctx.respond("🔴 Recording started")
-    except Exception as e:
-        log(f"Join error: {traceback.format_exc()}")
-        await ctx.respond(f"❌ Error: {str(e)}")
-
-async def save_to_file(sink, channel, session_id):
-    os.makedirs(RECORDING_DIR, exist_ok=True)
-    
-    # 1. Save audio files
-    for user_id, audio in sink.audio_data.items():
-        try:
-            user = await channel.guild.fetch_member(user_id)
-            safe_name = "".join(c for c in user.display_name if c.isalnum() or c in ' _-').rstrip()
-            filename = f"{RECORDING_DIR}/{session_id}_{safe_name}_{user_id}.wav"
-            
-            with open(filename, 'wb') as f:
-                f.write(audio.file.getvalue())
-            await channel.send(f"💾 Saved {safe_name}'s audio")
-        except Exception as e:
-            log(f"Save error for {user_id}: {traceback.format_exc()}")
-    
-    # 2. Save timeline with silence segments
-    timeline = {
-        user_id: [
-            {
-                'start': seg['start'].isoformat(),
-                'end': seg['end'].isoformat(),
-                'silent': seg.get('silent', False)
-            } 
-            for seg in segments
-        ]
-        for user_id, segments in sink.get_timeline_data().items()
-    }
-    
-    timeline_path = f"{RECORDING_DIR}/{session_id}_timeline.json"
-    with open(timeline_path, 'w') as f:
-        json.dump(timeline, f, indent=2)
-    
-    await channel.send(f"⏱️ Timeline saved: `{timeline_path}`")
-
-@bot.command()
-async def stop(ctx):
-    if ctx.guild.id not in connections:
-        await ctx.respond("⚠️ Not recording")
+    print("\n2. 📋 LOADING TIMELINE:")
+    timeline = load_timeline()
+    if not timeline:
+        print("❌ No timeline loaded!")
         return
+    print("\n3. 🛠️  BUILDING NATURAL CONVERSATION MIX:")
+    conversation_mix = create_natural_conversation_mix(speakers, timeline, max_gap_seconds=2.0)
+    print("\n4. 💾 SAVING RESULT:")
+    if len(conversation_mix) > 0:
+        conversation_mix.export("natural_conversation.wav", format="wav")
+        print(f"   ✅ Saved natural_conversation.wav ({len(conversation_mix):,}ms / {len(conversation_mix)/1000:.2f}s)")
+        print("   🎉 SUCCESS: Audio processing completed!")
+    else:
+        print("   ❌ FAILURE: Combined track is 0ms")
+    return conversation_mix
 
-    vc = connections[ctx.guild.id]
-    vc.stop_recording()
-    await vc.disconnect()
-    del connections[ctx.guild.id]
-    await ctx.respond("⏹️ Recording stopped")
-
-bot.run(TOKEN)
+if __name__ == "__main__":
+    main()
