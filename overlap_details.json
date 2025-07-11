@@ -26,14 +26,5 @@
       }
     }
   ],
-  "late_segments": [
-    {
-      "speaker": "speaker_1",
-      "original_start": "2025-07-08T20:05:58.207074",
-      "original_end": "2025-07-08T20:06:00.653824",
-      "overlap_start": "2025-07-08T20:05:58.206145",
-      "overlap_end": "2025-07-08T20:06:00.653145",
-      "duration_ms": 2447.0
-    }
-  ]
+  "late_segments": []
 }

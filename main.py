@@ -8,9 +8,16 @@ from collections import defaultdict
 import json
 import wave
 import contextlib
+import pyttsx3
+from pydub import AudioSegment
+import asyncio
+import os
+from gtts import gTTS
+import io
+
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = os.getenv('DISCORD_TOKEN_1')
 RECORDING_DIR = 'recordings'
 LOG_FILE = 'recording_debug.log'
 
@@ -170,4 +177,33 @@ async def stop(ctx):
     del connections[ctx.guild.id]
     await ctx.respond("⏹️ Recording stopped")
 
+def text_to_wav(text, filename='tts_output.wav'):
+    engine = pyttsx3.init()
+    engine.save_to_file(text, filename)
+    engine.runAndWait()
+    # Ensure it's a proper wav file for discord.py
+    sound = AudioSegment.from_file(filename)
+    sound.export(filename, format="wav")
+
+@bot.command()
+async def tts(ctx, *, message):
+    if not (ctx.author.voice and ctx.author.voice.channel):
+        await ctx.send("You must be in a voice channel.")
+        return
+    
+    vc = discord.utils.get(bot.voice_clients, guild=ctx.guild)
+    if not vc:
+        vc = await ctx.author.voice.channel.connect()
+    
+    # Generate TTS
+    tts = gTTS(text=message, lang='en')
+    tts.save("temp_tts.mp3")
+    
+    audio_source = discord.FFmpegPCMAudio("temp_tts.mp3")
+    vc.play(audio_source)
+    
+    while vc.is_playing():
+        await asyncio.sleep(1)
+    
+    os.remove("temp_tts.mp3")
 bot.run(TOKEN)

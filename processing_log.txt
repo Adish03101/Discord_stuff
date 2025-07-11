@@ -1,2 +1,1 @@
 Overlap detected: speaker_1 and speaker_2 from 2025-07-08T20:05:58.206145 to 2025-07-08T20:06:00.653145
-Appended late segment for speaker_1 (original: 2025-07-08T20:05:58.207074 - 2025-07-08T20:06:00.653824)
